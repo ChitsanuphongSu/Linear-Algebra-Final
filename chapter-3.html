@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="th">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="บท 3 การแปลงเชิงเส้น เมทริกซ์ เคอร์เนล ภาพ ทฤษฎีบทมิติ และสมสัณฐาน"><title>บท 3 การแปลงเชิงเส้น | LA I</title><script src="theme.js"></script><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <a class="skip" href="#main">ข้ามไปยังเนื้อหา</a>
+  <header class="site-header"><div class="wrap"><a class="brand" href="index.html">LA I · Final Review</a><nav class="nav" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="chapter-2-5.html">บท 2.5</a><a href="chapter-3.html" aria-current="page">บท 3</a><a href="chapter-4.html">บท 4</a><a href="cheatsheet.html">Cheat Sheet</a></nav></div></header>
+  <div class="reader-top"><div class="wrap"><div class="breadcrumbs"><a href="index.html">หน้าแรก</a> / บท 3</div><h1>การแปลงเชิงเส้น</h1><p>มองเมทริกซ์เป็นกฎที่รับเวกเตอร์เข้าไปแล้วส่งเวกเตอร์ออกมา จากนั้นศึกษาว่าอะไรหายไปและสร้างผลลัพธ์อะไรได้บ้าง</p></div></div>
+  <main id="main" class="wrap reader-layout">
+    <aside class="toc" aria-label="สารบัญบทนี้"><strong>ในบทนี้</strong><a href="#linear">3.1 การแปลงเชิงเส้น</a><a href="#properties">วิธีตรวจและสมบัติ</a><a href="#matrix">3.2 เมทริกซ์ของการแปลง</a><a href="#basis-matrix">เมทริกซ์ตามฐาน</a><a href="#kernel">3.3 เคอร์เนล</a><a href="#range">ภาพและ rank</a><a href="#rank-nullity">ทฤษฎีบทมิติ</a><a href="#isomorphism">3.4 สมสัณฐาน</a><a href="#workflow">วิธีทำโจทย์</a></aside>
+    <article class="article">
+      <section id="linear"><h2>3.1 การแปลงเชิงเส้น</h2>
+        <p class="lead">ฟังก์ชัน T:V→W เป็นการแปลงเชิงเส้นเมื่อการแปลง “เข้ากันได้” กับการบวกเวกเตอร์และการคูณด้วยจำนวน</p>
+        <div class="formula">T(u+v)=T(u)+T(v) และ T(cu)=cT(u)<br>เทียบเท่ากับ T(au+bv)=aT(u)+bT(v)</div>
+        <p>สมบัติต้องจริงสำหรับเวกเตอร์ทุกคู่และสเกลาร์ทุกค่า ถ้าหาตัวอย่างโต้แย้งได้เพียงกรณีเดียว ฟังก์ชันนั้นไม่เป็นเชิงเส้น</p>
+        <div class="example"><h3>ตัวอย่างเชิงเส้น</h3><p>T(x,y)=(2x+y,x−y) เพราะเมื่อแทน au+bv ผลลัพธ์แต่ละตำแหน่งแยกออกเป็น aT(u)+bT(v) ได้</p></div>
+        <div class="example"><h3>ตัวอย่างไม่เชิงเส้น</h3><p>S(x,y)=(x²,y) ไม่รักษาการคูณด้วยจำนวน: S(2,0)=(4,0) แต่ 2S(1,0)=(2,0) ส่วน F(x,y)=(x+1,y) ไม่เชิงเส้น เพราะ F(0,0)≠(0,0)</p></div>
+      </section>
+      <section id="properties"><h2>สมบัติที่ใช้ตรวจโจทย์</h2>
+        <ul><li>ถ้า T เชิงเส้น ต้องมี T(0)=0 และ T(−u)=−T(u)</li><li>ถ้า u=c₁v₁+⋯+cₙvₙ แล้ว T(u)=c₁T(v₁)+⋯+cₙT(vₙ)</li><li>ดังนั้นถ้ารู้ภาพของเวกเตอร์ฐานทุกตัว ก็รู้ T(u) สำหรับทุก u</li></ul>
+        <div class="warning">T(0)=0 เป็นเงื่อนไขจำเป็น แต่ยังไม่พอพิสูจน์ว่า T เชิงเส้น ต้องตรวจสมบัติการบวกและการคูณด้วยจำนวน</div>
+        <div class="example"><h3>พิสูจน์แบบรวบยอด</h3><p>ให้ T(x,y,z)=(x+3y+z,−5z), u=(x,y,z), v=(p,q,r) จะได้</p><p>T(au+bv)=(a(x+3y+z)+b(p+3q+r),−5az−5br)=aT(u)+bT(v) จึงเป็นเชิงเส้น</p></div>
+      </section>
+      <section id="matrix"><h2>3.2 เมทริกซ์ของการแปลงเชิงเส้น</h2>
+        <p>ถ้า T:ℝⁿ→ℝᵐ และใช้ฐานธรรมชาติ e₁,…,eₙ ให้นำภาพ T(e₁),…,T(eₙ) มาเรียงเป็นหลักของเมทริกซ์ A เมทริกซ์มีขนาด m×n</p>
+        <div class="formula">A=[T(e₁) ⋯ T(eₙ)] และ T(x)=Ax</div>
+        <div class="example"><h3>ตัวอย่าง</h3><p>T(x,y,z)=(x+3y+z,−5z) ให้ T(e₁)=(1,0), T(e₂)=(3,0), T(e₃)=(1,−5) จึง A=[[1,3,1],[0,0,−5]]</p><p>ตรวจ: A(1,2,−1)ᵀ=(6,5)ᵀ ตรงกับ T(1,2,−1)</p></div>
+      </section>
+      <section id="basis-matrix"><h2>เมทริกซ์ของ T เมื่อฐานไม่ใช่ฐานธรรมชาติ</h2>
+        <p>ให้ B=(v₁,…,vₙ) เป็นฐานต้นทาง และ C เป็นฐานปลายทาง เมทริกซ์ [T]<sub>C←B</sub> มี <strong>[T(vᵢ)]<sub>C</sub></strong> เป็นหลักที่ i</p>
+        <div class="formula">[T]<sub>C←B</sub>=[[T(v₁)]<sub>C</sub> ⋯ [T(vₙ)]<sub>C</sub>]<br>[T(u)]<sub>C</sub>=[T]<sub>C←B</sub>[u]<sub>B</sub></div>
+        <p>ถ้า A เป็นเมทริกซ์มาตรฐาน และ S<sub>B</sub>, S<sub>C</sub> เป็นเมทริกซ์ฐาน จะได้ [T]<sub>C←B</sub>=S<sub>C</sub><sup>−1</sup>AS<sub>B</sub> สูตรนี้หมายถึงแปลงพิกัด B เป็นเวกเตอร์จริง ใช้ A แล้วแปลงผลเป็นพิกัด C</p>
+        <div class="example"><h3>ตัวอย่าง</h3><p>T(x,y)=(2x+y,x−y), B=((1,1),(1,−1)), C=((1,0),(1,1))</p><p>T(1,1)=(3,0) มีพิกัด C เป็น (3,0) และ T(1,−1)=(1,2) มีพิกัด C เป็น (−1,2) จึง <strong>[T]<sub>C←B</sub>=[[3,−1],[0,2]]</strong></p></div>
+        <p>สำหรับการประกอบฟังก์ชัน ให้ทำ T ก่อน S ใน S∘T เมทริกซ์จึงคูณเป็น [S∘T]=[S][T] โดยฐานกลางต้องตรงกัน</p>
+      </section>
+      <section id="kernel"><h2>3.3 เคอร์เนลของการแปลง</h2>
+        <p><strong>ker(T)</strong> คือเวกเตอร์ต้นทางทั้งหมดที่ถูกส่งไปเป็นศูนย์ ถ้า T เขียนด้วยเมทริกซ์มาตรฐาน A ให้แก้ระบบเอกพันธ์ Ax=0 หากใช้เมทริกซ์เทียบฐาน B คำตอบ x คือพิกัด [v]<sub>B</sub> ซึ่งต้องนำกลับไปสร้างเวกเตอร์ v</p>
+        <div class="formula">ker(T)={v∈V:T(v)=0}, &nbsp; nullity(T)=dim(ker(T))</div>
+        <p>เคอร์เนลเป็นปริภูมิย่อยของต้นทาง ถ้า ker(T)={0} แปลว่าไม่มีเวกเตอร์ต่างกันสองตัวถูกส่งไปยังผลลัพธ์เดียวกัน จึงได้ว่า T เป็น <strong>หนึ่งต่อหนึ่ง</strong></p>
+      </section>
+      <section id="range"><h2>ภาพของการแปลงและ rank</h2>
+        <p><strong>range(T)</strong> หรือภาพ คือผลลัพธ์ทุกตัวที่ T สร้างได้ ถ้า A เป็นเมทริกซ์มาตรฐาน ภาพคือ span ของหลัก A แต่ฐานของภาพต้องเลือกเฉพาะหลักที่เป็นอิสระเชิงเส้น หาก A เทียบฐานปลายทาง C หลักของ A คือพิกัดของเวกเตอร์ในภาพ ให้แปลงกลับด้วยฐาน C</p>
+        <div class="formula">range(T)={T(v):v∈V}, &nbsp; rank(T)=dim(range(T))</div>
+        <p>T เป็น <strong>ทั่วถึง W</strong> ก็ต่อเมื่อ range(T)=W หรือ rank(T)=dim(W)</p>
+        <div class="example"><h3>ตัวอย่าง: T(x,y,z)=(x+y,y+z)</h3><p>เมทริกซ์ A=[[1,1,0],[0,1,1]] หลักที่ 1 และ 3 คือ (1,0) และ (0,1) จึงเป็นฐานของภาพ และ range(T)=ℝ²</p><p>แก้ T(x,y,z)=0 ได้ x=−t, y=t, z=−t จึง ker(T)=span{(−1,1,−1)}</p></div>
+      </section>
+      <section id="rank-nullity"><h2>ทฤษฎีบทมิติ</h2>
+        <p>มิติของต้นทางแบ่งเป็นส่วนที่ถูกส่งไปเป็นศูนย์กับส่วนที่ยังปรากฏในผลลัพธ์</p>
+        <div class="formula">nullity(T)+rank(T)=dim(V)</div>
+        <p>ในตัวอย่างก่อนหน้า nullity=1, rank=2 และ dim(ℝ³)=3 จึงตรวจได้ว่า 1+2=3 ฟังก์ชันนี้ <strong>ทั่วถึง</strong> ℝ² แต่ <strong>ไม่หนึ่งต่อหนึ่ง</strong></p>
+        <div class="warning">ถ้า dim(V)=dim(W) และมีมิติจำกัด: หนึ่งต่อหนึ่ง ⇔ ทั่วถึง แต่เมื่อมิติต้นทางกับปลายทางต่างกัน ห้ามสรุปสมมูลเช่นนี้</div>
+      </section>
+      <section id="isomorphism"><h2>3.4 ฟังก์ชันสมสัณฐาน</h2>
+        <p>ฟังก์ชันสมสัณฐานคือการแปลงเชิงเส้นที่ <strong>หนึ่งต่อหนึ่งและทั่วถึง</strong> จึงมีการแปลงผกผันที่เป็นเชิงเส้นด้วย ปริภูมิสองแห่งที่สมสัณฐานกันมีโครงสร้างเชิงเส้นเหมือนกัน</p>
+        <div class="formula">T เป็นสมสัณฐาน ⇔ ker(T)={0} และ range(T)=W</div>
+        <p>ตัวอย่าง ℝ³ กับ P₂ สมสัณฐานกันด้วย T(a,b,c)=a+bx+cx² เพราะพหุนามทุกตัวใน P₂ เกิดได้เพียงวิธีเดียวจาก (a,b,c)</p>
+        <p>สำหรับปริภูมิมิติจำกัดเหนือฟิลด์เดียวกัน ถ้ามิติเท่ากันก็สร้างสมสัณฐานได้โดยจับคู่เวกเตอร์ฐานทีละตัว</p>
+      </section>
+      <section id="workflow"><h2>ลำดับทำโจทย์แบบใบงาน 7–8</h2>
+        <ol class="steps"><li>ระบุต้นทางและปลายทาง ตรวจขนาดและฐานที่โจทย์กำหนด</li><li>ถ้าให้กฎ T มา ให้ตรวจ T(au+bv)=aT(u)+bT(v) หรือหาตัวอย่างโต้แย้ง</li><li>หาเมทริกซ์จากภาพของฐานต้นทาง โดยเขียนผลในพิกัดฐานปลายทาง</li><li>หา ker จาก Ax=0 และหา range จากหลักอิสระของ A</li><li>ใช้ rank+nullity ตรวจ แล้วสรุปหนึ่งต่อหนึ่ง ทั่วถึง หรือสมสัณฐาน</li></ol>
+        <div class="next"><a class="button" href="chapter-4.html">อ่านต่อ: บท 4</a><a class="button ghost" href="cheatsheet.html">ดูสูตรแบบย่อ</a><a class="button ghost" href="index.html">กลับหน้าแรก</a></div>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="wrap">อิง Lecture_LinearAlgebra.pdf บท 3 และเฉลย_Homework7.pdf, เฉลย_Homework8.pdf</div></footer>
+</body></html>

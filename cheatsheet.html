@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="th">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Cheat Sheet สูตรพีชคณิตเชิงเส้น 1 ตั้งแต่พิกัด การแปลงเชิงเส้น ถึงค่าเจาะจง"><title>Cheat Sheet | Linear Algebra I</title><script src="theme.js"></script><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <a class="skip" href="#main">ข้ามไปยังเนื้อหา</a>
+  <header class="site-header"><div class="wrap"><a class="brand" href="index.html">LA I · Final Review</a><nav class="nav" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="chapter-2-5.html">บท 2.5</a><a href="chapter-3.html">บท 3</a><a href="chapter-4.html">บท 4</a><a href="cheatsheet.html" aria-current="page">Cheat Sheet</a></nav></div></header>
+  <div class="reader-top"><div class="wrap"><div class="breadcrumbs"><a href="index.html">หน้าแรก</a> / Cheat Sheet</div><h1>สูตรที่ต้องหยิบใช้ก่อนสอบ</h1><p>สรุปความหมาย สูตร และลำดับทำโจทย์ของใบงาน 6–10 ในหน้าเดียว เลือก “พิมพ์” จากเบราว์เซอร์เพื่อเก็บฉบับกระดาษได้</p></div></div>
+  <main id="main" class="wrap">
+    <section class="section" aria-labelledby="formula-title"><h2 id="formula-title">สูตรหลัก</h2><p class="section-intro">อ่านลูกศรของเมทริกซ์ให้ชัดว่าเริ่มจากพิกัดฐานไหนและไปฐานไหน</p>
+      <div class="cheat-grid">
+        <div class="cheat-block"><h2>1 · พิกัดเทียบฐาน B</h2><p>เมื่อ B=(v₁,…,vₙ) และ u=∑cᵢvᵢ</p><div class="formula">[u]<sub>B</sub>=(c₁,…,cₙ)ᵀ<br>u=S<sub>B</sub>[u]<sub>B</sub>, &nbsp; S<sub>B</sub>=[v₁ ⋯ vₙ]</div><p>หา cᵢ โดยตั้งสมการและเทียบองค์ประกอบ</p></div>
+        <div class="cheat-block"><h2>2 · เปลี่ยนฐาน B ไป C</h2><div class="formula">P<sub>C←B</sub>=[[v₁]<sub>C</sub> ⋯ [vₙ]<sub>C</sub>]<br>[u]<sub>C</sub>=P<sub>C←B</sub>[u]<sub>B</sub></div><div class="formula">P<sub>C←B</sub>=S<sub>C</sub><sup>−1</sup>S<sub>B</sub><br>P<sub>B←C</sub>=(P<sub>C←B</sub>)<sup>−1</sup></div></div>
+        <div class="cheat-block"><h2>3 · ตรวจการแปลงเชิงเส้น</h2><div class="formula">T(au+bv)=aT(u)+bT(v)</div><ul><li>ถ้า T(0)≠0 ตอบได้ทันทีว่าไม่เชิงเส้น</li><li>T(0)=0 อย่างเดียวยังพิสูจน์ไม่พอ</li><li>ฟังก์ชันที่มี x² หรือค่าคงที่บวกเพิ่ม มักต้องระวัง</li></ul></div>
+        <div class="cheat-block"><h2>4 · เมทริกซ์ของ T</h2><div class="formula">A=[T(e₁) ⋯ T(eₙ)]<br>[T]<sub>C←B</sub>=[[T(v₁)]<sub>C</sub> ⋯ [T(vₙ)]<sub>C</sub>]</div><div class="formula">[T]<sub>C←B</sub>=S<sub>C</sub><sup>−1</sup>AS<sub>B</sub></div></div>
+        <div class="cheat-block"><h2>5 · เคอร์เนลและภาพ</h2><div class="formula">ker(T): แก้ Ax=0<br>range(T): span ของหลัก A</div><p>สูตรอ่านเวกเตอร์จริงได้ทันทีเมื่อ A เป็นเมทริกซ์มาตรฐาน หากใช้ฐานอื่น ให้แปลงพิกัดกลับ</p><ul><li>nullity=dim(ker T), rank=dim(range T)</li><li>หนึ่งต่อหนึ่ง ⇔ ker(T)={0}</li><li>ทั่วถึง W ⇔ rank(T)=dim(W)</li></ul></div>
+        <div class="cheat-block"><h2>6 · ทฤษฎีบทมิติและสมสัณฐาน</h2><div class="formula">nullity(T)+rank(T)=dim(V)</div><ul><li>สมสัณฐาน = เชิงเส้น + หนึ่งต่อหนึ่ง + ทั่วถึง</li><li>เมื่อ dim(V)=dim(W)&lt;∞: หนึ่งต่อหนึ่ง ⇔ ทั่วถึง</li></ul></div>
+        <div class="cheat-block"><h2>7 · ค่าเจาะจง</h2><div class="formula">Av=λv, &nbsp; v≠0<br>p<sub>A</sub>(λ)=det(λI−A); แก้ p<sub>A</sub>(λ)=0<br>E<sub>λ</sub>=ker(A−λI)</div><p>สำหรับ 2×2: p<sub>A</sub>(λ)=λ²−tr(A)λ+det(A)</p></div>
+        <div class="cheat-block"><h2>8 · ทำให้เป็นทแยงมุม</h2><div class="formula">P=[v₁ ⋯ vₙ], D=diag(λ₁,…,λₙ)<br>P<sup>−1</sup>AP=D ⇔ A=PDP<sup>−1</sup><br>A<sup>k</sup>=PD<sup>k</sup>P<sup>−1</sup></div><p>ทำได้ก็ต่อเมื่อมีเวกเตอร์เจาะจงอิสระครบ n ตัว</p></div>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="workflow-title"><h2 id="workflow-title">ลำดับทำโจทย์ตามใบงาน</h2>
+      <div class="cheat-grid">
+        <div class="cheat-block"><h2>ใบงาน 6 · พิกัดและฐาน</h2><ol><li>ตั้ง u=∑cᵢvᵢ</li><li>เทียบองค์ประกอบเพื่อหา [u]<sub>B</sub></li><li>ถ้าเปลี่ยนฐาน ให้หา [vᵢ]<sub>C</sub> ทีละหลัก</li><li>ตรวจโดยสร้าง u จริงจากพิกัดทั้งสองชุด</li></ol></div>
+        <div class="cheat-block"><h2>ใบงาน 7 · เมทริกซ์ของ T</h2><ol><li>ตรวจเชิงเส้นด้วย T(au+bv)</li><li>หา T(vᵢ) สำหรับฐานต้นทาง</li><li>แปลงแต่ละภาพเป็นพิกัดของฐานปลายทาง</li><li>นำพิกัดมาเรียงเป็นหลัก</li></ol></div>
+        <div class="cheat-block"><h2>ใบงาน 8 · ker และ range</h2><ol><li>แก้ Ax=0 เพื่อหา ker</li><li>เลือกหลักอิสระของ A เพื่อหา range</li><li>ตรวจ rank+nullity=dim(V)</li><li>สรุปหนึ่งต่อหนึ่ง ทั่วถึง และสมสัณฐาน</li></ol></div>
+        <div class="cheat-block"><h2>ใบงาน 9–10 · Eigen และ D</h2><ol><li>หา det(λI−A)=0</li><li>แต่ละ λ แก้ (A−λI)v=0</li><li>นับเวกเตอร์เจาะจงอิสระให้ครบ n</li><li>สร้าง P,D โดยจับคู่ลำดับให้ตรงกัน</li><li>ตรวจ AP=PD</li></ol></div>
+      </div>
+    </section>
+    <section class="section" aria-labelledby="mistake-title"><h2 id="mistake-title">ตรวจคำตอบก่อนส่ง</h2>
+      <div class="cheat-block"><ul><li>ใช้ฐาน <strong>ตามลำดับ</strong> ที่โจทย์กำหนด</li><li>เมทริกซ์เปลี่ยนฐานและเมทริกซ์ของ T ต้องรับพิกัดจากฐานต้นทางที่ระบุจริง</li><li>ฐานของ range ต้องเป็นเซตอิสระ ไม่ใช่ยกมาทุกหลักโดยไม่ตรวจ</li><li>เวกเตอร์เจาะจงห้ามเป็นศูนย์</li><li>รากซ้ำต้องตรวจ dim(E<sub>λ</sub>) ก่อนสรุปว่าทำให้เป็นทแยงมุมได้</li><li>ตรวจสูตร A=PDP<sup>−1</sup> ด้วย AP=PD ซึ่งคำนวณสั้นกว่า</li></ul></div>
+      <div class="next"><a class="button" href="index.html">กลับหน้าแรก</a><a class="button ghost" href="output/pdf/Linear_Algebra_Final_Review_TH.pdf" target="_blank" rel="noopener">เปิดสไลด์ PDF</a></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap">สรุปจาก Lecture_LinearAlgebra.pdf และเฉลยใบงาน 6–10</div></footer>
+</body></html>

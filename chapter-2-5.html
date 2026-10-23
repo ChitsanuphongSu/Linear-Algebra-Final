@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="บท 2.5 พิกัดและการเปลี่ยนฐานหลัก พร้อมตัวอย่างและขั้นตอนทำโจทย์">
+  <title>บท 2.5 พิกัดและการเปลี่ยนฐานหลัก | LA I</title>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">ข้ามไปยังเนื้อหา</a>
+  <header class="site-header"><div class="wrap"><a class="brand" href="index.html">LA I · Final Review</a><nav class="nav" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="chapter-2-5.html" aria-current="page">บท 2.5</a><a href="chapter-3.html">บท 3</a><a href="chapter-4.html">บท 4</a><a href="cheatsheet.html">Cheat Sheet</a></nav></div></header>
+  <div class="reader-top"><div class="wrap"><div class="breadcrumbs"><a href="index.html">หน้าแรก</a> / บท 2.5</div><h1>พิกัดและการเปลี่ยนฐานหลัก</h1><p>เวกเตอร์ตัวเดิมอธิบายด้วยชุดตัวเลขต่างกันได้ เมื่อเลือกฐานหลักต่างกัน บทนี้สอนวิธีแปลงระหว่างชุดตัวเลขเหล่านั้น</p></div></div>
+  <main id="main" class="wrap reader-layout">
+    <aside class="toc" aria-label="สารบัญบทนี้"><strong>ในบทนี้</strong><a href="#idea">ภาพรวม</a><a href="#coordinates">2.5.1 พิกัด</a><a href="#polynomial">พหุนามและเมทริกซ์</a><a href="#change">2.5.2 การเปลี่ยนฐาน</a><a href="#matrix-form">สูตรเมทริกซ์</a><a href="#worked">ตัวอย่างโจทย์</a><a href="#pitfalls">จุดที่มักพลาด</a></aside>
+    <article class="article">
+      <section id="idea"><h2>ภาพรวม: ฐานหลักคือระบบอ้างอิง</h2>
+        <p class="lead">นึกถึงการบอกตำแหน่งโดยใช้แกนคนละชุด เวกเตอร์จริงไม่เปลี่ยน แต่ตัวเลขที่บอกตำแหน่งเปลี่ยน</p>
+        <p>ฐานหลักลำดับ <strong>B=(v₁,…,vₙ)</strong> ต้องสร้างเวกเตอร์ทุกตัวในปริภูมิได้และไม่มีเวกเตอร์ตัวใดซ้ำซ้อน ลำดับมีความสำคัญ เพราะพิกัดตัวที่หนึ่งเป็นค่าสัมประสิทธิ์ของ v₁ เสมอ</p>
+      </section>
+      <section id="coordinates"><h2>2.5.1 พิกัด</h2>
+        <h3>นิยาม</h3><p>ถ้า u=c₁v₁+⋯+cₙvₙ เมื่อ B=(v₁,…,vₙ) เป็นฐานหลักลำดับ จะเรียกคอลัมน์ของ c₁,…,cₙ ว่า <strong>พิกัดของ u เทียบกับ B</strong> เขียน [u]ᵦ</p>
+        <div class="formula">u=c₁v₁+⋯+cₙvₙ ⇔ [u]ᵦ=(c₁,…,cₙ)ᵀ</div>
+        <p>เพราะ B เป็นฐาน ค่าสัมประสิทธิ์ชุดนี้มีเพียงชุดเดียว การหาพิกัดจึงทำโดยตั้งสมการแล้วเทียบแต่ละองค์ประกอบ</p>
+        <div class="example"><h3>ตัวอย่าง: หา [u]ᵦ ใน ℝ³</h3><p>ให้ B=((1,0,1),(0,1,1),(1,1,0)) และ u=(4,5,3)</p><ol class="steps"><li>ตั้ง (4,5,3)=c₁(1,0,1)+c₂(0,1,1)+c₃(1,1,0)</li><li>เทียบองค์ประกอบ: c₁+c₃=4, c₂+c₃=5, c₁+c₂=3</li><li>ได้ c₃=3, c₁=1, c₂=2 ดังนั้น <strong>[u]ᵦ=(1,2,3)ᵀ</strong></li><li>ตรวจ: v₁+2v₂+3v₃=(4,5,3)</li></ol></div>
+        <p>กลับกัน ถ้ารู้ [w]ᵦ=(2,−1,3)ᵀ จะได้ w=2v₁−v₂+3v₃=(5,2,1)</p>
+      </section>
+      <section id="polynomial"><h2>พิกัดของพหุนามและเมทริกซ์</h2>
+        <p>หลักการเหมือนกับเวกเตอร์ใน ℝⁿ เพียงเปลี่ยนสิ่งที่ใช้เทียบ จากองค์ประกอบตัวเลขเป็นสัมประสิทธิ์ของพหุนาม หรือสมาชิกแต่ละตำแหน่งในเมทริกซ์</p>
+        <div class="example"><h3>พหุนาม</h3><p>ให้ B=(1,1+x,x²) ใน P₂ และ p(x)=3+2x+4x² ตั้ง p=c₁+c₂(1+x)+c₃x² เทียบสัมประสิทธิ์ได้ c₂=2, c₃=4, c₁=1 จึง <strong>[p]ᵦ=(1,2,4)ᵀ</strong></p></div>
+        <div class="example"><h3>เมทริกซ์</h3><p>ให้ B=(I,E₁₂,E₂₁,H) โดย H=[[1,0],[0,−1]] และ M=[[3,4],[5,1]]</p><p>ตั้ง M=aI+bE₁₂+cE₂₁+dH=[[a+d,b],[c,a−d]] จึง b=4, c=5, a+d=3, a−d=1 ได้ <strong>[M]ᵦ=(2,4,5,1)ᵀ</strong></p></div>
+      </section>
+      <section id="change"><h2>2.5.2 การเปลี่ยนฐานหลัก</h2>
+        <p>ให้ B=(v₁,…,vₙ) และ C=(w₁,…,wₙ) เป็นฐานของปริภูมิเดียวกัน ต้องการแปลง <strong>พิกัด B ไปเป็นพิกัด C</strong> ให้เขียน v₁,…,vₙ เป็นพิกัด C ทีละตัว แล้วนำมาเรียงเป็นหลัก</p>
+        <div class="formula">P<sub>C←B</sub>=[[v₁]<sub>C</sub> ⋯ [vₙ]<sub>C</sub>] และ [u]<sub>C</sub>=P<sub>C←B</sub>[u]<sub>B</sub></div>
+        <p>อ่านลูกศรจากขวาไปซ้าย: ด้านขวาคือพิกัดที่มีอยู่ ด้านซ้ายคือพิกัดที่ต้องการ คอลัมน์ที่ i ของ P คือพิกัดของเวกเตอร์ฐาน B ตัวที่ i เมื่อมองผ่านฐาน C</p>
+      </section>
+      <section id="matrix-form"><h2>สูตรเมทริกซ์และการกลับทิศ</h2>
+        <p>สำหรับฐานใน ℝⁿ ให้ S<sub>B</sub>=[v₁ ⋯ vₙ] และ S<sub>C</sub>=[w₁ ⋯ wₙ] เป็นเมทริกซ์ที่เอาเวกเตอร์ฐานมาเป็นหลัก</p>
+        <div class="formula">u=S<sub>B</sub>[u]<sub>B</sub>=S<sub>C</sub>[u]<sub>C</sub><br>P<sub>C←B</sub>=S<sub>C</sub><sup>−1</sup>S<sub>B</sub></div>
+        <ul><li>เปลี่ยนกลับ: P<sub>B←C</sub>=(P<sub>C←B</sub>)<sup>−1</sup></li><li>เปลี่ยนผ่านฐาน D: P<sub>D←B</sub>=P<sub>D←C</sub>P<sub>C←B</sub></li><li>หาพิกัดจากเวกเตอร์มาตรฐาน: [u]<sub>B</sub>=S<sub>B</sub><sup>−1</sup>u</li></ul>
+      </section>
+      <section id="worked"><h2>ตัวอย่างโจทย์เปลี่ยนฐาน</h2>
+        <p>ให้ B=((1,1),(0,2)) และ C=((1,0),(1,−1)) จงหา P<sub>C←B</sub> และเปลี่ยน [u]<sub>B</sub>=(3,1)ᵀ เป็น [u]<sub>C</sub></p>
+        <ol class="steps"><li>v₁=(1,1)=2(1,0)−(1,−1) จึง [v₁]<sub>C</sub>=(2,−1)ᵀ</li><li>v₂=(0,2)=2(1,0)−2(1,−1) จึง [v₂]<sub>C</sub>=(2,−2)ᵀ</li><li>นำพิกัดเป็นหลัก: P<sub>C←B</sub>=[[2,2],[−1,−2]]</li><li>คูณ P<sub>C←B</sub>(3,1)ᵀ=(8,−5)ᵀ ดังนั้น <strong>[u]<sub>C</sub>=(8,−5)ᵀ</strong></li></ol>
+        <div class="formula">ตรวจ: 3(1,1)+(0,2)=(3,5)=8(1,0)−5(1,−1)</div>
+      </section>
+      <section id="pitfalls"><h2>จุดที่มักพลาด</h2>
+        <div class="warning"><strong>พิกัดไม่ใช่เวกเตอร์จริงเสมอไป:</strong> [u]ᵦ อาจไม่เท่ากับ u เมื่อ B ไม่ใช่ฐานธรรมชาติ</div>
+        <ul><li>สลับลำดับฐานแล้วพิกัดและเมทริกซ์เปลี่ยน ต้องคงลำดับที่โจทย์ให้</li><li>ก่อนคูณเมทริกซ์เปลี่ยนฐาน ให้ดูว่าลูกศรของ P ตรงกับพิกัดอินพุตหรือไม่</li><li>ตรวจคำตอบด้วยการสร้างเวกเตอร์จริงจากทั้งสองฐาน ควรได้เวกเตอร์เดียวกัน</li></ul>
+        <div class="next"><a class="button" href="chapter-3.html">อ่านต่อ: บท 3</a><a class="button ghost" href="cheatsheet.html">ดูสูตรแบบย่อ</a><a class="button ghost" href="index.html">กลับหน้าแรก</a></div>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="wrap">อิง Lecture_LinearAlgebra.pdf หัวข้อ 2.5 และเฉลย_Homework6.pdf</div></footer>
+</body></html>

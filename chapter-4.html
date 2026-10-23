@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="th">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="บท 4 ค่าเจาะจง เวกเตอร์เจาะจง พหุนามลักษณะเฉพาะ และการทำให้เป็นเมทริกซ์ทแยงมุม"><title>บท 4 ค่าเจาะจงและเวกเตอร์เจาะจง | LA I</title><script src="theme.js"></script><link rel="stylesheet" href="styles.css"></head>
+<body>
+  <a class="skip" href="#main">ข้ามไปยังเนื้อหา</a>
+  <header class="site-header"><div class="wrap"><a class="brand" href="index.html">LA I · Final Review</a><nav class="nav" aria-label="เมนูหลัก"><a href="index.html">หน้าแรก</a><a href="chapter-2-5.html">บท 2.5</a><a href="chapter-3.html">บท 3</a><a href="chapter-4.html" aria-current="page">บท 4</a><a href="cheatsheet.html">Cheat Sheet</a></nav></div></header>
+  <div class="reader-top"><div class="wrap"><div class="breadcrumbs"><a href="index.html">หน้าแรก</a> / บท 4</div><h1>ค่าเจาะจงและเวกเตอร์เจาะจง</h1><p>บางทิศทางของการแปลงยังอยู่บนแนวเดิม เมื่อหาแนวเหล่านั้นครบ เราอาจเปลี่ยนเมทริกซ์ให้คำนวณง่ายเป็นเมทริกซ์ทแยงมุมได้</p></div></div>
+  <main id="main" class="wrap reader-layout">
+    <aside class="toc" aria-label="สารบัญบทนี้"><strong>ในบทนี้</strong><a href="#eigen">4.1 ความหมาย</a><a href="#characteristic">4.2 วิธีหาค่าเจาะจง</a><a href="#eigenspace">ปริภูมิเจาะจง</a><a href="#multiplicity">ภาวะซ้ำ</a><a href="#diagonal">4.3 ทำให้เป็นทแยงมุม</a><a href="#powers">กำลังของเมทริกซ์</a><a href="#repeated">กรณีรากซ้ำ</a><a href="#workflow">วิธีทำโจทย์</a></aside>
+    <article class="article">
+      <section id="eigen"><h2>4.1 ค่าเจาะจงและเวกเตอร์เจาะจง</h2>
+        <p class="lead">ถ้า A เปลี่ยนเวกเตอร์ v แล้วผลลัพธ์ยังเป็นจำนวนเท่าของ v เดิม เราเรียก v ว่าเวกเตอร์เจาะจง และเรียกจำนวนเท่านั้นว่า λ</p>
+        <div class="formula">Av=λv โดย v≠0</div>
+        <p>λ&gt;1 คือยืด, 0&lt;λ&lt;1 คือหด, λ&lt;0 คือกลับทิศโดยขนาดเปลี่ยนตาม |λ|, λ=0 คือส่งเวกเตอร์เจาะจงไปเป็นศูนย์ เวกเตอร์ศูนย์เองห้ามนับเป็นเวกเตอร์เจาะจง เพราะ A0=λ0 จริงสำหรับทุก λ</p>
+        <div class="example"><h3>ตัวอย่าง</h3><p>ถ้า A=[[3,0],[0,2]] จะได้ A(1,0)=3(1,0) และ A(0,1)=2(0,1) ดังนั้น 3 และ 2 เป็นค่าเจาะจงที่สอดคล้องกับแกนสองแนว</p></div>
+      </section>
+      <section id="characteristic"><h2>4.2 การหาค่าเจาะจง</h2>
+        <p>ย้ายข้าง Av=λv จะได้ (A−λI)v=0 ต้องการคำตอบ v ที่ไม่เป็นศูนย์ จึงต้องให้เมทริกซ์ A−λI ไม่ผกผัน หรือดีเทอร์มิแนนท์เป็นศูนย์</p>
+        <div class="formula">p<sub>A</sub>(λ)=det(λI−A)<br>แก้ p<sub>A</sub>(λ)=0 เพื่อหาค่าเจาะจง</div>
+        <p>สำหรับ A=[[a,b],[c,d]]: p<sub>A</sub>(λ)=λ²−(a+d)λ+(ad−bc) ดังนั้น trace(A)=a+d เป็นผลบวกค่าเจาะจง และ det(A)=ad−bc เป็นผลคูณค่าเจาะจง โดยนับภาวะซ้ำ</p>
+        <div class="example"><h3>ตัวอย่าง: A=[[3,1],[0,2]]</h3><p>p<sub>A</sub>(λ)=det([[λ−3,−1],[0,λ−2]])=(λ−3)(λ−2) จึงได้ค่าเจาะจง 3 และ 2</p></div>
+      </section>
+      <section id="eigenspace"><h2>ปริภูมิเจาะจง</h2>
+        <p>เมื่อรู้ λ แล้ว ให้แก้ระบบ (A−λI)v=0 คำตอบทั้งหมดรวมศูนย์เรียกว่า <strong>ปริภูมิเจาะจง E<sub>λ</sub></strong> ส่วนเวกเตอร์เจาะจงเป็นสมาชิกที่ไม่เป็นศูนย์ของปริภูมินี้</p>
+        <div class="formula">E<sub>λ</sub>=ker(A−λI)</div>
+        <div class="example"><h3>ตัวอย่างต่อเนื่อง</h3><p>A=[[3,1],[0,2]]</p><ol class="steps"><li>λ=3: A−3I=[[0,1],[0,−1]] จึง y=0, x อิสระ ได้ E₃=span{(1,0)}</li><li>λ=2: A−2I=[[1,1],[0,0]] จึง x+y=0 ได้ E₂=span{(−1,1)}</li><li>ตรวจ A(1,0)=3(1,0) และ A(−1,1)=2(−1,1)</li></ol></div>
+      </section>
+      <section id="multiplicity"><h2>ภาวะซ้ำของค่าเจาะจง</h2>
+        <p>ค่าเจาะจงอาจเป็นรากซ้ำของพหุนามลักษณะเฉพาะ ต้องแยกจำนวนครั้งที่เป็นรากออกจากจำนวนเวกเตอร์เจาะจงอิสระ</p>
+        <ul><li><strong>ภาวะซ้ำเชิงพีชคณิต:</strong> จำนวนครั้งที่ λ ปรากฏเป็นรากของ p<sub>A</sub></li><li><strong>ภาวะซ้ำเชิงเรขาคณิต:</strong> dim(E<sub>λ</sub>) หรือจำนวนเวกเตอร์ฐานของปริภูมิเจาะจง</li><li>ภาวะซ้ำเชิงเรขาคณิตไม่เกินภาวะซ้ำเชิงพีชคณิต</li></ul>
+        <div class="formula">1 ≤ dim(E<sub>λ</sub>) ≤ ภาวะซ้ำเชิงพีชคณิตของ λ</div>
+        <p>เวกเตอร์เจาะจงที่มาจากค่าเจาะจงต่างกันเป็นอิสระเชิงเส้นเสมอ ข้อนี้ช่วยตัดสินการทำให้เป็นทแยงมุม</p>
+      </section>
+      <section id="diagonal"><h2>4.3 การทำให้เป็นเมทริกซ์ทแยงมุม</h2>
+        <p>A ขนาด n×n ทำให้เป็นเมทริกซ์ทแยงมุมได้ ก็ต่อเมื่อมีเวกเตอร์เจาะจงอิสระเชิงเส้นครบ n ตัว ให้เรียงเวกเตอร์เป็นหลักของ P และเรียงค่าเจาะจงที่สอดคล้องกันลงแนวทแยงของ D</p>
+        <div class="formula">P=[v₁ ⋯ vₙ], D=diag(λ₁,…,λₙ)<br>P<sup>−1</sup>AP=D ⇔ A=PDP<sup>−1</sup></div>
+        <div class="example"><h3>ตัวอย่าง: A=[[4,1],[2,3]]</h3><ol class="steps"><li>p<sub>A</sub>(λ)=(λ−5)(λ−2) จึงมีค่าเจาะจง 5, 2</li><li>สำหรับ λ=5 ได้ v₁=(1,1); สำหรับ λ=2 ได้ v₂=(1,−2)</li><li>เลือก P=[[1,1],[1,−2]] และ D=[[5,0],[0,2]]</li><li>ตรวจ AP=PD หรือคำนวณ P<sup>−1</sup>AP=D</li></ol></div>
+        <div class="warning">ลำดับใน D ต้องตรงกับลำดับหลักของ P ถ้าสลับเวกเตอร์ใน P ต้องสลับค่าเจาะจงใน D ตามด้วย</div>
+      </section>
+      <section id="powers"><h2>เหตุผลที่อยากทำให้เป็นทแยงมุม</h2>
+        <p>เมทริกซ์ทแยงมุมยกกำลังง่าย: ยกกำลังเฉพาะสมาชิกบนแนวทแยง เมื่อนำกลับไปยังฐานเดิมจึงคำนวณ A ยกกำลังสูงได้ง่ายกว่า</p>
+        <div class="formula">A<sup>k</sup>=PD<sup>k</sup>P<sup>−1</sup>, &nbsp; D<sup>k</sup>=diag(λ₁<sup>k</sup>,…,λₙ<sup>k</sup>)</div>
+        <p>ถ้าโจทย์ย้อนกลับให้ค่าเจาะจงและเวกเตอร์เจาะจงมา ให้สร้าง P, D แล้วคำนวณ <strong>A=PDP<sup>−1</sup></strong></p>
+        <div class="example"><h3>โจทย์ย้อนกลับ</h3><p>ให้ λ₁=3 กับ v₁=(1,1), λ₂=−2 กับ v₂=(1,2) จะได้ P=[[1,1],[1,2]], D=[[3,0],[0,−2]] และ A=PDP<sup>−1</sup>=[[8,−5],[10,−7]]</p></div>
+      </section>
+      <section id="repeated"><h2>รากซ้ำ: ต้องตรวจมิติของปริภูมิเจาะจง</h2>
+        <p>ถ้า A มีค่าเจาะจงต่างกันครบ n ค่า จะทำให้เป็นทแยงมุมได้แน่ แต่ถ้ามีรากซ้ำ ต้องตรวจว่าได้เวกเตอร์เจาะจงอิสระครบ n ตัวหรือไม่</p>
+        <div class="example"><h3>ตัวอย่างที่ทำไม่ได้</h3><p>B=[[2,1],[0,2]] มี p<sub>B</sub>(λ)=(λ−2)² ค่า λ=2 มีภาวะซ้ำเชิงพีชคณิต 2 แต่ B−2I=[[0,1],[0,0]] ให้ E₂=span{(1,0)} ซึ่งมีมิติ 1</p><p>เมทริกซ์ 2×2 ต้องการเวกเตอร์เจาะจงอิสระ 2 ตัว จึง <strong>ทำให้เป็นทแยงมุมไม่ได้</strong></p></div>
+        <p>หากพหุนามลักษณะเฉพาะไม่มีรากจริงเพียงพอ อาจทำให้เป็นทแยงมุมเหนือ ℝ ไม่ได้ แม้จะพิจารณาต่อเหนือ ℂ ได้ในบางกรณี</p>
+      </section>
+      <section id="workflow"><h2>ลำดับทำโจทย์แบบใบงาน 9–10</h2>
+        <ol class="steps"><li>หา p<sub>A</sub>(λ)=det(λI−A) แล้วแก้ p<sub>A</sub>(λ)=0</li><li>แต่ละ λ แก้ (A−λI)v=0 แล้วเขียนฐานของ E<sub>λ</sub></li><li>นับเวกเตอร์เจาะจงอิสระทั้งหมด ถ้าครบ n จึงสร้าง P และ D</li><li>เรียงค่าใน D ให้ตรงกับเวกเตอร์ที่เป็นหลักใน P</li><li>ตรวจ AP=PD; ถ้าต้องหากำลัง ใช้ A<sup>k</sup>=PD<sup>k</sup>P<sup>−1</sup></li></ol>
+        <div class="next"><a class="button" href="cheatsheet.html">เปิด Cheat Sheet</a><a class="button ghost" href="output/pdf/Linear_Algebra_Final_Review_TH.pdf" target="_blank" rel="noopener">ดูโจทย์ในสไลด์ PDF</a><a class="button ghost" href="index.html">กลับหน้าแรก</a></div>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="wrap">อิง Lecture_LinearAlgebra.pdf บท 4 และเฉลย_Homework9.pdf, เฉลย_Homework10.pdf</div></footer>
+</body></html>
